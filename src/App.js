@@ -6,11 +6,22 @@ import Features from "./components/features/Features";
 import Header from "./components/header/Header";
 import HeroSection from "./components/heroSection/HeroSection";
 import Testimonials from "./components/testimonials/Testimonials";
+import Modal from "./components/modal/Modal";
+import { useState } from "react";
 
 function App() {
-  return (
+
+  const [show, setShow] = useState(false);
+
+  const handleShow = (value) => {
+    console.log(value)
+
+    setShow(value);
+  };
+
+  return (<>
     <div className="container-large">
-      <Header />
+      <Header handleShow={handleShow}/>
       <HeroSection />
       <About />
       <Features />
@@ -18,7 +29,8 @@ function App() {
       <Testimonials />
       <EndSection />
     </div>
-  );
+    {show ? <Modal handleShow={handleShow} /> : <></>}
+  </>);
 }
 
 export default App;
